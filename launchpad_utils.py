@@ -66,14 +66,14 @@ def topcol(x):
 
 # Now the inverses: functions that point exactly to a key on the Launchpad
 
-def right(ro):
-    "This gives the note of a right key at position ro"
-    return (ro * step) + 8
+def right(row):
+    "This gives the note of a right key at position row"
+    return (row * step) + 8
 
 
-def square(ro, col):
-    "This gives the note of a square key at position ro,col"
-    return (ro * step) + col
+def square(row, col):
+    "This gives the note of a square key at position row,col"
+    return (row * step) + col
 
 
 def top(col):
@@ -95,14 +95,14 @@ OnlyTop = Filter(CTRL) >> CtrlFilter(FirstCtrl + i for i in side)
 
 # Now filters for rows, colums, and single keys.
 
-def RowSqFilter(ro):
+def RowSqFilter(row):
     "This selects only notes from specified row"
-    return KeyFilter(ro * step, right(ro))  # no right
+    return KeyFilter(row * step, right(row))  # no right
 
 
-def RowFilter(ro):
+def RowFilter(row):
     "This selects only notes from specified row"
-    return KeyFilter(ro * step, right(ro) + 1)  # also right
+    return KeyFilter(row * step, right(row) + 1)  # also right
 
 
 def ColumnFilter(col):
@@ -115,26 +115,26 @@ def TopFilter(col):
     return CtrlFilter(top(col))
 
 
-def RightFilter(ro):
+def RightFilter(row):
     "This selects only specified key from right"
-    return KeyFilter(right(ro))
+    return KeyFilter(right(row))
 
 
-def SquareFilter(ro, col):
+def SquareFilter(row, col):
     "This selects only specified key from square"
-    return KeyFilter(square(ro, col))
+    return KeyFilter(square(row, col))
 
 
 # KEY GENERATORS
 
-def SquareKey(ro, col):
+def SquareKey(row, col):
     "This creates square note with given row and column"
-    return Key(square(ro, col))
+    return Key(square(row, col))
 
 
-def RightKey(ro):
+def RightKey(row):
     "This creates right note with given row"
-    return Key(right(ro))
+    return Key(right(row))
 
 
 def TopKey(col, val):

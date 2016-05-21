@@ -5,7 +5,7 @@ config(
     backend='jack-rt',
     client_name='launchpad',
     in_ports=[
-        'Pad Keys',  # Signal from the Launchpad
+        'Pad Keys',
     ],
     out_ports=[
         'To Pad',
@@ -47,9 +47,9 @@ MapCtrl32 = [RowFilter(k) >> [Velocity(fixed=v[0]) >> Port(1),  # color to Pad
 
 # I would like the right keys to activate/mute entire groups (rows) of patterns:
 
-def EntireRow(ro):
+def EntireRow(row):
     "Sends all notes of given row"
-    return [SquareKey(ro, i) for i in longside]
+    return [SquareKey(row, i) for i in longside]
 
 ToEntireRow = [RowFilter(i) % EntireRow(i) for i in side]
 
